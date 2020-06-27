@@ -86,16 +86,18 @@
       const $minute_hand = document.querySelector(".min-hand");
       const $hour_hand = document.querySelector(".hour-hand");
 
+      function convertDegrees(value, format) {
+        return (value / format) * 360 + 90;
+      }
+
       function setDate() {
         const now = new Date();
-        // let hour = now.getHours();
-        // let minutes = now.getMinutes();
         const seconds = now.getSeconds();
         const minutes = now.getMinutes();
         const hours = now.getHours();
-        const secondsDegrees = (seconds / 60) * 360 + 90;
-        const minutesDegrees = (minutes / 60) * 360 + 90;
-        const hoursDegrees = (hours / 12) * 360 + 90;
+        const secondsDegrees = convertDegrees(seconds, 60);
+        const minutesDegrees = convertDegrees(minutes, 60);
+        const hoursDegrees = convertDegrees(hours, 12);
         $second_hand.style.transform = `rotate(${secondsDegrees}deg)`;
         $minute_hand.style.transform = `rotate(${minutesDegrees}deg)`;
         $hour_hand.style.transform = `rotate(${hoursDegrees}deg)`;
